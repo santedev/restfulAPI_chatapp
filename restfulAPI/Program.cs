@@ -31,13 +31,8 @@ var connectionStringBuilder = new NpgsqlConnectionStringBuilder {
 	Pooling = true
 };
 
-// The following lines are using environment variables to securely handle AWS keys.
-// No secrets are hard-coded in this file.
-string? awsAccessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY");
-string? awsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY");
-
-
-var credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
+var credentials = new BasicAWSCredentials(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY"), 
+Environment.GetEnvironmentVariable("AWS_SECRET_KEY"));
 using var s3Client = new AmazonS3Client(credentials, RegionEndpoint.USEast2);
 const string bucketName = "chatappdogbucket";
 
