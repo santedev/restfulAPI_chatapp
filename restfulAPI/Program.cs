@@ -36,7 +36,6 @@ string? awsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY");
 
 
 var credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
-//var credentials = new BasicAWSCredentials("AKIAW3MECBDFPGNK3GF2", "D+conCF8gL1tfF8YyZxPRPsfxz3XE7dvT8GbNWjS");
 using var s3Client = new AmazonS3Client(credentials, RegionEndpoint.USEast2);
 const string bucketName = "chatappdogbucket";
 
