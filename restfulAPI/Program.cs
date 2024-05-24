@@ -31,14 +31,15 @@ var connectionStringBuilder = new NpgsqlConnectionStringBuilder {
 	Pooling = true
 };
 
-var credentials = new BasicAWSCredentials(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY"), 
+var credentials = new BasicAWSCredentials(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY"),
 Environment.GetEnvironmentVariable("AWS_SECRET_KEY"));
 using var s3Client = new AmazonS3Client(credentials, RegionEndpoint.USEast2);
 const string bucketName = "chatappdogbucket";
 
 async Task createServerHttp() {
 	var listener = new HttpListener();
-	listener.Prefixes.Add("http://+:8080/");
+	string port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+	listener.Prefixes.Add($"http://+:{port}/");
 	listener.Start();
 	Console.WriteLine("Server starts to run");
 	foreach (string prefix in listener.Prefixes) {
