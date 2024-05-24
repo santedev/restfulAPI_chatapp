@@ -31,6 +31,8 @@ var connectionStringBuilder = new NpgsqlConnectionStringBuilder {
 	Pooling = true
 };
 
+// The following lines are using environment variables to securely handle AWS keys.
+// No secrets are hard-coded in this file.
 string? awsAccessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY");
 string? awsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY");
 
